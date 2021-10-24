@@ -12,7 +12,7 @@
 
     --sm-font: var(--fw-light) 14px / 20px var(--font-family);
     --md-font: var(--fw-normal) 16px / 24px var(--font-family);
-    --hg-font: var(--fw-bold) 16px / 24px var(--font-family);
+    --hg-font: var(--fw-bold) 20px / 24px var(--font-family);
 
     /* Other */
     --radius: 0.5rem
@@ -23,7 +23,7 @@ body[data-theme='dark'] {
     --color-bg: hsl(207, 26%, 17%);
     --color-ui: hsl(209, 23%, 22%);
 
-    --shadow: rgba(245, 245, 245, 0.2) 0 0 8px;
+    --shadow: rgba(55, 52, 52, 0.2) 0 0 8px;
 }
 
 body[data-theme='light'] {
@@ -50,10 +50,29 @@ h6 {
     margin: 0;
 }
 
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: var(--font-family);
-    color: var(--color-text);
     font-weight: var(--fw-light);
+    font-size: var(--fs-md);
+    color: var(--color-text);
+
     background-color: var(--color-bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
