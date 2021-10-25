@@ -28,7 +28,6 @@ const HomePage = ({countries, setCountries}) => {
         if (!countries.length) {
             fetchAllCountries()
             .then(data => setCountries(data))
-            .then(data => console.log(data))
             .catch((e) => console.log(`ERROR ${e.response.status} ` + JSON.stringify(e.response.data)))
 
 
