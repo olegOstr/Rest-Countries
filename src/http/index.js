@@ -15,6 +15,6 @@ export const fetchCurrentCountry = async (name) => {
 }
 
 export const fetchFilteredCodes = async (codes) => {
-    const {data} = await $host.get('alpha?codes=' + codes.join(','))
+    const {data} = await $host.get('alpha?codes=' + codes)
     return data
 }

@@ -36,17 +36,24 @@ const ListGroup = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 2rem;
   
     @media (min-width: 1024px) {
       flex-direction: row;
       flex-wrap: wrap;
-      gap: 3rem;
   }
 `
 
 const InfoList = styled.ul`
-
+  &:not(:first-child) {
+    margin-top: 2rem;
+  }
+  
+  
+  @media (min-width: 1164px) {
+      &:not(:first-child) {
+        margin-top: 0rem;
+      }
+  }
 `
 
 const InfoListItem = styled.li`
@@ -61,16 +68,15 @@ const InfoListItem = styled.li`
 const Meta = styled.div`
   margin-top: 3rem;
   display: flex;
-  gap: 1.5rem;
   flex-direction: column;
   align-items: flex-start;
   
       b {
+      margin-bottom: 2rem;
       font-weight: var(--fw-normal);
     }
   
   @media (min-width: 767px) {
-    flex-direction: row;
     align-items: center;
   }
 `
@@ -110,12 +116,10 @@ const Info = (props) => {
     const [neighbors, setNeighbors] = useState([])
 
     useEffect(() => {
-
         if (borders.length) {
             fetchFilteredCodes(borders)
             .then(data => setNeighbors(data.map(c => c.name)))
         }
-        
     }, [borders])
 
     return (
