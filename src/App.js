@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -19,11 +19,11 @@ const App = () => {
                     <Route path='/' exact>
                         <HomePage countries={countries} setCountries={setCountries}/>
                     </Route>
-                    <Route path='/country/:name' component={DetailsPage}/>
-                    <Route component={NotFoundPage}/>
+                    <Route path='/country/:name' component={DetailsPage} exact/>
+                    <Route path='/page-not-found' component={NotFoundPage} exact/>
+                    <Redirect to='page-not-found'/>
                 </Switch>
             </Main>
-
         </>
     );
 }
