@@ -24,8 +24,14 @@ const Wrapper = styled.section`
 const InfoImage = styled.img`
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
+  object-fit: cover;
+  
+    @media (min-width: 767px) {
+      height: auto;
+      object-fit: contain;
+  }
+  
 `
 
 const InfoTitle = styled.h1`
@@ -51,7 +57,7 @@ const InfoList = styled.ul`
   
   @media (min-width: 1164px) {
       &:not(:first-child) {
-        margin-top: 0rem;
+        margin-top: 0;
       }
   }
 `
@@ -83,11 +89,11 @@ const Meta = styled.div`
 
 const TagGroup = styled.div`
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
 `
 
 const Tag = styled.span`
+  margin: 0 1rem 1rem 0;
   padding: 0 1rem;
   background-color: var(--color-ui);
   line-height: 1.8;
