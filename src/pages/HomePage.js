@@ -4,10 +4,13 @@ import Controls from '../components/Controls';
 import List from '../components/List';
 import {fetchAllCountries} from '../http';
 import Card from '../components/Card';
+import SkeletonList from '../components/Loader/SkeletonList';
 
 const HomePage = ({countries, setCountries}) => {
 
     const [filteredCountries, setFilteredCountries] = useState(countries)
+    const [isLoaded, setIsLoaded] = useState(false)
+
 
     const handleSearch = (search, region) => {
         let data = [...countries]
@@ -26,11 +29,13 @@ const HomePage = ({countries, setCountries}) => {
 
     useEffect(() => {
         if (!countries.length) {
+            setIsLoaded(true)
             fetchAllCountries()
             .then(data => setCountries(data))
+            .then(() => setTimeout(() => {
+                setIsLoaded(false)
+            }, 1100))
             .catch((e) => console.log(`ERROR ${e.response.status} ` + JSON.stringify(e.response.data)))
-
-
         }
     }, [])
 
@@ -65,7 +70,7 @@ const HomePage = ({countries, setCountries}) => {
         <>
             <Controls onSearch={handleSearch}/>
             <List>
-                {visibleCountries}
+                {isLoaded ? <SkeletonList/> : visibleCountries}
             </List>
         </>
     );

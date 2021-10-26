@@ -35,8 +35,6 @@ const CardTitle = styled.h3`
   margin-bottom: 1rem;
 `
 
-const CardList = styled.ul``
-
 const CardListItem = styled.li`
   font: var(--md-font);
   font-weight: var(--fw-light);
@@ -52,13 +50,13 @@ const Card = ({img, name, info = [], onClick}) => {
             <CardImage src={img} alt={'Flag ' + name}/>
             <CardBody>
                 <CardTitle>{name}</CardTitle>
-                <CardList>
+                <ul>
                     {info.map(el => (
                         <CardListItem key={uuid()}>
                             <span>{el.title}:</span> {el.description}
                         </CardListItem>
                     ))}
-                </CardList>
+                </ul>
             </CardBody>
         </Wrapper>
     );
