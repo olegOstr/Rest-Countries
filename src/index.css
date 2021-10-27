@@ -5,14 +5,15 @@
     --font-family: 'Nunito Sans', sans-serif;
     --fs-sm: 14px;
     --fs-md: 16px;
+    --fs-lg: 20px;
 
     --fw-light: 300;
     --fw-normal: 600;
     --fw-bold: 800;
 
-    --sm-font: var(--fw-light) 14px / 20px var(--font-family);
-    --md-font: var(--fw-normal) 16px / 24px var(--font-family);
-    --hg-font: var(--fw-bold) 20px / 24px var(--font-family);
+    --sm-font: var(--fw-light) var(--fs-sm) / 20px var(--font-family);
+    --md-font: var(--fw-normal) var(--fs-md) / 24px var(--font-family);
+    --hg-font: var(--fw-bold) var(--fs-lg) / 24px var(--font-family);
 
     /* Other */
     --radius: 0.5rem

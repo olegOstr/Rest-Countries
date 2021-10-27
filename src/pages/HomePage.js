@@ -8,9 +8,9 @@ import SkeletonList from '../components/Loader/SkeletonList';
 
 const HomePage = ({countries, setCountries}) => {
 
+    const {push} = useHistory()
     const [filteredCountries, setFilteredCountries] = useState(countries)
     const [isLoaded, setIsLoaded] = useState(false)
-
 
     const handleSearch = (search, region) => {
         let data = [...countries]
@@ -24,8 +24,6 @@ const HomePage = ({countries, setCountries}) => {
         }
         setFilteredCountries(data)
     }
-
-    const {push} = useHistory()
 
     useEffect(() => {
         if (!countries.length) {

@@ -47,10 +47,12 @@ const ThemeSwitcher = styled.button`
 
 const Header = () => {
 
-    const [theme, setTheme] = useState('dark')
+    let localTheme = localStorage.getItem('theme')
+    const [theme, setTheme] = useState(localTheme ? localTheme : 'light')
 
     useEffect(() => {
         document.body.setAttribute('data-theme', theme)
+        localStorage.setItem('theme', theme)
     }, [theme])
 
     const toggleTheme = () => {
