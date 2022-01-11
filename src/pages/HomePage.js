@@ -4,13 +4,24 @@ import Controls from '../components/Controls';
 import List from '../components/List';
 import {fetchAllCountries} from '../http';
 import Card from '../components/Card';
-import SkeletonList from '../components/Loader/SkeletonList';
+import SkeletonList from '../components/UI/Loader/SkeletonList';
+import Pagination from '../components/Pagination';
 
 const HomePage = ({countries, setCountries}) => {
 
     const {push} = useHistory()
-    const [filteredCountries, setFilteredCountries] = useState(countries)
+
     const [isLoaded, setIsLoaded] = useState(false)
+    const [filteredCountries, setFilteredCountries] = useState(countries)
+
+    const [currentPage, setCurrentPage] = useState(0)
+    const [countPerPage] = useState(21)
+
+    const lastCountryIndex = currentPage * countPerPage
+    const firstCountryIndex = lastCountryIndex - countPerPage
+    const currentCountry = filteredCountries.slice(firstCountryIndex, lastCountryIndex)
+
+    const paginate = pageNumber => setCurrentPage(pageNumber)
 
     const handleSearch = (search, region) => {
         let data = [...countries]
@@ -22,6 +33,7 @@ const HomePage = ({countries, setCountries}) => {
         if (search) {
             data = data.filter((c) => c.name.toLowerCase().includes(search.toLowerCase()))
         }
+        setCurrentPage(1)
         setFilteredCountries(data)
     }
 
@@ -41,7 +53,7 @@ const HomePage = ({countries, setCountries}) => {
         handleSearch()
     }, [countries])
 
-    const visibleCountries = filteredCountries.map((c) => {
+    const visibleCountries = currentCountry.map((c) => {
 
         const countryInfo = {
             img: c.flags.svg,
@@ -70,6 +82,8 @@ const HomePage = ({countries, setCountries}) => {
             <List>
                 {isLoaded ? <SkeletonList/> : visibleCountries}
             </List>
+            <Pagination countPerPage={countPerPage} totalCountries={filteredCountries.length} paginate={paginate}
+                        currentPage={currentPage}/>
         </>
     );
 };
